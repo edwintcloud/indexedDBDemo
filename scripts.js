@@ -37,11 +37,14 @@ function create() {
 function read() {
   document.querySelector(".table").innerHTML = `
   <table id="table">
+  <thead>
             <tr>
-              <th>Name</th>
+              <th>Name (Index)</th>
               <th>Description</th>
               <th></th>
             </tr>
+            </thead>
+            <tbody id="table_body"></tbody>
           </table>
   `;
   const transaction = db
@@ -49,10 +52,12 @@ function read() {
     .objectStore("todos");
   const data = transaction.getAll();
   data.onsuccess = function(event) {
-    var table = document.getElementById("table");
+    document.getElementById("name").value = "";
+    document.getElementById("data").value = "";
+    var table = document.getElementById("table_body");
     event.target.result.forEach(i => {
       // Create an empty <tr> element and add it to the 1st position of the table:
-      var row = table.insertRow(1);
+      var row = table.insertRow(0);
 
       // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
       var cell1 = row.insertCell(0);
@@ -62,9 +67,9 @@ function read() {
       // Add some text to the new cells:
       cell1.innerHTML = i.name;
       cell2.innerHTML = i.data;
-      cell3.innerHTML = `<button onclick="update('${i.name}', '${
+      cell3.innerHTML = `<button class="button small" onclick="update('${i.name}', '${
         i.data
-      }')">Update</button><button onclick="remove('${
+      }')">Update</button><button class="button small red" onclick="remove('${
         i.name
       }')">Delete</button>`;
     });
