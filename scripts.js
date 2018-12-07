@@ -28,7 +28,6 @@ function create() {
   data.onsuccess = function(event) {
     const before = document.getElementById("name").getAttribute("before");
     document.getElementById("name").setAttribute("before", null);
-    console.log(before)
     if(before != null && test.name != before) return remove(before);
     read();
   };
