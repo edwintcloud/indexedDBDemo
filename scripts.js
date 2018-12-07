@@ -20,11 +20,16 @@ function create() {
     name: document.getElementById("name").value,
     data: document.getElementById("data").value
   };
+  if(test.name.length == 0 || test.data.length == 0) return;
   const transaction = db
     .transaction(["todos"], "readwrite")
     .objectStore("todos");
   const data = transaction.put(test);
   data.onsuccess = function(event) {
+    const before = document.getElementById("name").getAttribute("before");
+    document.getElementById("name").setAttribute("before", null);
+    console.log(before)
+    if(before != null && test.name != before) return remove(before);
     read();
   };
 }
@@ -68,6 +73,7 @@ function read() {
 
 function update(name, data) {
   document.getElementById("name").value = name;
+  document.getElementById("name").setAttribute("before", name);
   document.getElementById("data").value = data;
 }
 
