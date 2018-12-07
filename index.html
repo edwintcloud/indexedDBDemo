@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>indexedDB Demo</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="scripts.js" defer></script>
-</head>
-<body>
-  <div class="container">
-    <h1>IndexedDB Demo</h1>
-    <div class="grid_container">
-      <div class="documents_panel">
-        documents table with add/remove buttons, on click display
-      </div>
-      <div class="document_panel">
-        new document panel/edit document
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>indexedDB Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>IndexedDB Demo</h1>
+      <div class="grid_container">
+        <div class="documents_panel">
+          <div class="table">
+          
+          </div>
+          documents table with add/remove buttons, on click display
+          <button onclick="read()">Read Test</button>
+        </div>
+        <div class="document_panel">
+          <label for="name">Name: </label>
+          <input id="name" type="text" placeholder="name" />
+          <label for="data">Description</label>
+          <textarea id="data" cols="30" rows="7"></textarea>
+          <button onclick="create()">Save</button>
+        </div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
